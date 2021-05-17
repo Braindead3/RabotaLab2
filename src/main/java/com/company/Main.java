@@ -7,7 +7,7 @@ import static java.lang.System.out;
 
 public class Main {
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DATABASE_URL = "jdbc:mysql://localhost/ProductMarket&serverTimezone=UTC";
+    static final String DATABASE_URL = "jdbc:mysql://localhost/ProductMarket?serverTimezone=UTC";
     static final String USER = "root";
     static final String PASSWORD = "12345";
 
@@ -120,12 +120,17 @@ public class Main {
                     5.Warehouse
                     6.Suppliers
                     7.Deliveries
-                    8.Sales""");
+                    8.Sales
+                    9.Выход""");
             table = in.nextInt();
             switch (table) {
                 case 1 -> CustomerMenu();
 
                 case 2 -> CategoriesMenu();
+
+                case 9-> {mainMenu=false;}
+
+                default -> throw new IllegalStateException("Unexpected value: " + table);
             }
         }
 
@@ -193,6 +198,7 @@ public class Main {
                         preparedStatement.execute();
                         out.println("запись удалена успешно!");
                     }
+
                     case 5 -> menu = false;
                     default -> throw new IllegalStateException("Неизвестное значение: " + sw);
                 }
